@@ -1,0 +1,903 @@
+
+Cilkview: Generating scalability data
+Cilkview Scalability Analyzer V2.0.0, Build 4501
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . . . . . . .
+4 . . . O X . . .
+5 . . . X O . . .
+6 . . . . . . . .
+7 . . . . . . . .
+8 . . . . . . . .
+Is Player 1 (X) [h]uman or [c]omputer? Enter search depth for X (1..60): Is Player 2 (O) [h]uman or [c]omputer? Enter search depth for O (1..60): 
+[X] Computer chooses move (6, 5) => Score: -2
+flipping disk at 5,5
+X flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . . . . . . .
+4 . . . O X . . .
+5 . . . X X . . .
+6 . . . . X . . .
+7 . . . . . . . .
+8 . . . . . . . .
+
+[O] Computer chooses move (6, 6) => Score: -5
+flipping disk at 5,5
+O flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . . . . . . .
+4 . . . O X . . .
+5 . . . X O . . .
+6 . . . . X O . .
+7 . . . . . . . .
+8 . . . . . . . .
+
+[X] Computer chooses move (6, 7) => Score: -2
+flipping disk at 6,6
+X flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . . . . . . .
+4 . . . O X . . .
+5 . . . X O . . .
+6 . . . . X X X .
+7 . . . . . . . .
+8 . . . . . . . .
+
+[O] Computer chooses move (7, 7) => Score: -4
+flipping disk at 6,6
+O flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . . . . . . .
+4 . . . O X . . .
+5 . . . X O . . .
+6 . . . . X O X .
+7 . . . . . . O .
+8 . . . . . . . .
+
+[X] Computer chooses move (8, 7) => Score: -2
+flipping disk at 7,7
+X flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . . . . . . .
+4 . . . O X . . .
+5 . . . X O . . .
+6 . . . . X O X .
+7 . . . . . . X .
+8 . . . . . . X .
+
+[O] Computer chooses move (8, 8) => Score: -1
+flipping disk at 7,7
+O flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . . . . . . .
+4 . . . O X . . .
+5 . . . X O . . .
+6 . . . . X O X .
+7 . . . . . . O .
+8 . . . . . . X O
+
+[X] Computer chooses move (5, 6) => Score: -4
+flipping disk at 5,5
+X flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . . . . . . .
+4 . . . O X . . .
+5 . . . X X X . .
+6 . . . . X O X .
+7 . . . . . . O .
+8 . . . . . . X O
+
+[O] Computer chooses move (8, 6) => Score: -1
+flipping disk at 8,7
+O flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . . . . . . .
+4 . . . O X . . .
+5 . . . X X X . .
+6 . . . . X O X .
+7 . . . . . . O .
+8 . . . . . O O O
+
+[X] Computer chooses move (4, 3) => Score: -4
+flipping disk at 4,4
+X flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . . . . . . .
+4 . . X X X . . .
+5 . . . X X X . .
+6 . . . . X O X .
+7 . . . . . . O .
+8 . . . . . O O O
+
+[O] Computer chooses move (6, 8) => Score: -1
+flipping disk at 6,7
+O flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . . . . . . .
+4 . . X X X . . .
+5 . . . X X X . .
+6 . . . . X O O O
+7 . . . . . . O .
+8 . . . . . O O O
+
+[X] Computer chooses move (7, 8) => Score: -8
+flipping disk at 6,7
+X flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . . . . . . .
+4 . . X X X . . .
+5 . . . X X X . .
+6 . . . . X O X O
+7 . . . . . . O X
+8 . . . . . O O O
+
+[O] Computer chooses move (5, 7) => Score: 1
+flipping disk at 6,7
+O flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . . . . . . .
+4 . . X X X . . .
+5 . . . X X X O .
+6 . . . . X O O O
+7 . . . . . . O X
+8 . . . . . O O O
+
+[X] Computer chooses move (7, 6) => Score: -8
+flipping disk at 7,7
+flipping disk at 6,6
+X flipped 2 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . . . . . . .
+4 . . X X X . . .
+5 . . . X X X O .
+6 . . . . X X O O
+7 . . . . . X X X
+8 . . . . . O O O
+
+[O] Computer chooses move (3, 3) => Score: 1
+flipping disk at 7,7
+flipping disk at 6,6
+flipping disk at 5,5
+flipping disk at 4,4
+O flipped 4 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . O . . . . .
+4 . . X O X . . .
+5 . . . X O X O .
+6 . . . . X O O O
+7 . . . . . X O X
+8 . . . . . O O O
+
+[X] Computer chooses move (3, 4) => Score: -10
+flipping disk at 4,4
+X flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . O X . . . .
+4 . . X X X . . .
+5 . . . X O X O .
+6 . . . . X O O O
+7 . . . . . X O X
+8 . . . . . O O O
+
+[O] Computer chooses move (8, 5) => Score: 3
+flipping disk at 7,6
+O flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . O X . . . .
+4 . . X X X . . .
+5 . . . X O X O .
+6 . . . . X O O O
+7 . . . . . O O X
+8 . . . . O O O O
+
+[X] Computer chooses move (7, 5) => Score: -10
+flipping disk at 7,7
+flipping disk at 7,6
+X flipped 2 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . O X . . . .
+4 . . X X X . . .
+5 . . . X O X O .
+6 . . . . X O O O
+7 . . . . X X X X
+8 . . . . O O O O
+
+[O] Computer chooses move (8, 4) => Score: 1
+flipping disk at 7,5
+O flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . O X . . . .
+4 . . X X X . . .
+5 . . . X O X O .
+6 . . . . X O O O
+7 . . . . O X X X
+8 . . . O O O O O
+
+[X] Computer chooses move (7, 4) => Score: -10
+flipping disk at 7,5
+X flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . O X . . . .
+4 . . X X X . . .
+5 . . . X O X O .
+6 . . . . X O O O
+7 . . . X X X X X
+8 . . . O O O O O
+
+[O] Computer chooses move (6, 3) => Score: 1
+flipping disk at 7,4
+O flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . O X . . . .
+4 . . X X X . . .
+5 . . . X O X O .
+6 . . O . X O O O
+7 . . . O X X X X
+8 . . . O O O O O
+
+[X] Computer chooses move (8, 3) => Score: -10
+flipping disk at 7,4
+X flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . O X . . . .
+4 . . X X X . . .
+5 . . . X O X O .
+6 . . O . X O O O
+7 . . . X X X X X
+8 . . X O O O O O
+
+[O] Computer chooses move (8, 2) => Score: 1
+flipping disk at 8,3
+O flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . O X . . . .
+4 . . X X X . . .
+5 . . . X O X O .
+6 . . O . X O O O
+7 . . . X X X X X
+8 . O O O O O O O
+
+[X] Computer chooses move (7, 2) => Score: -12
+flipping disk at 6,3
+X flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . O X . . . .
+4 . . X X X . . .
+5 . . . X O X O .
+6 . . X . X O O O
+7 . X . X X X X X
+8 . O O O O O O O
+
+[O] Computer chooses move (5, 2) => Score: 5
+flipping disk at 7,4
+flipping disk at 6,3
+O flipped 2 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . O X . . . .
+4 . . X X X . . .
+5 . O . X O X O .
+6 . . O . X O O O
+7 . X . O X X X X
+8 . O O O O O O O
+
+[X] Computer chooses move (6, 1) => Score: -12
+flipping disk at 5,2
+X flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . O X . . . .
+4 . . X X X . . .
+5 . X . X O X O .
+6 X . O . X O O O
+7 . X . O X X X X
+8 . O O O O O O O
+
+[O] Computer chooses move (4, 1) => Score: 5
+flipping disk at 5,2
+O flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . O X . . . .
+4 O . X X X . . .
+5 . O . X O X O .
+6 X . O . X O O O
+7 . X . O X X X X
+8 . O O O O O O O
+
+[X] Computer chooses move (7, 3) => Score: -14
+flipping disk at 7,4
+X flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . O X . . . .
+4 O . X X X . . .
+5 . O . X O X O .
+6 X . O . X O O O
+7 . X X X X X X X
+8 . O O O O O O O
+
+[O] Computer chooses move (6, 4) => Score: 7
+flipping disk at 6,5
+flipping disk at 7,4
+flipping disk at 7,5
+flipping disk at 7,3
+O flipped 4 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . . . . . . . .
+3 . . O X . . . .
+4 O . X X X . . .
+5 . O . X O X O .
+6 X . O O O O O O
+7 . X O O O X X X
+8 . O O O O O O O
+
+[X] Computer chooses move (2, 2) => Score: -16
+flipping disk at 3,3
+X flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 . . . . . . . .
+2 . X . . . . . .
+3 . . X X . . . .
+4 O . X X X . . .
+5 . O . X O X O .
+6 X . O O O O O O
+7 . X O O O X X X
+8 . O O O O O O O
+
+[O] Computer chooses move (1, 1) => Score: 9
+flipping disk at 4,4
+flipping disk at 3,3
+flipping disk at 2,2
+O flipped 3 disks.
+  1 2 3 4 5 6 7 8
+1 O . . . . . . .
+2 . O . . . . . .
+3 . . O X . . . .
+4 O . X O X . . .
+5 . O . X O X O .
+6 X . O O O O O O
+7 . X O O O X X X
+8 . O O O O O O O
+
+[X] Computer chooses move (2, 3) => Score: -20
+flipping disk at 3,3
+X flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 O . . . . . . .
+2 . O X . . . . .
+3 . . X X . . . .
+4 O . X O X . . .
+5 . O . X O X O .
+6 X . O O O O O O
+7 . X O O O X X X
+8 . O O O O O O O
+
+[O] Computer chooses move (4, 7) => Score: 9
+flipping disk at 5,6
+O flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 O . . . . . . .
+2 . O X . . . . .
+3 . . X X . . . .
+4 O . X O X . O .
+5 . O . X O O O .
+6 X . O O O O O O
+7 . X O O O X X X
+8 . O O O O O O O
+
+[X] Computer chooses move (2, 1) => Score: -18
+flipping disk at 2,2
+X flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 O . . . . . . .
+2 X X X . . . . .
+3 . . X X . . . .
+4 O . X O X . O .
+5 . O . X O O O .
+6 X . O O O O O O
+7 . X O O O X X X
+8 . O O O O O O O
+
+[O] Computer chooses move (3, 1) => Score: 11
+flipping disk at 2,1
+O flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 O . . . . . . .
+2 O X X . . . . .
+3 O . X X . . . .
+4 O . X O X . O .
+5 . O . X O O O .
+6 X . O O O O O O
+7 . X O O O X X X
+8 . O O O O O O O
+
+[X] Computer chooses move (5, 8) => Score: -20
+flipping disk at 5,5
+flipping disk at 5,6
+flipping disk at 5,7
+flipping disk at 6,8
+flipping disk at 6,7
+X flipped 5 disks.
+  1 2 3 4 5 6 7 8
+1 O . . . . . . .
+2 O X X . . . . .
+3 O . X X . . . .
+4 O . X O X . O .
+5 . O . X X X X X
+6 X . O O O O X X
+7 . X O O O X X X
+8 . O O O O O O O
+
+[O] Computer chooses move (4, 8) => Score: 13
+flipping disk at 7,8
+flipping disk at 6,8
+flipping disk at 5,8
+flipping disk at 5,7
+O flipped 4 disks.
+  1 2 3 4 5 6 7 8
+1 O . . . . . . .
+2 O X X . . . . .
+3 O . X X . . . .
+4 O . X O X . O O
+5 . O . X X X O O
+6 X . O O O O X O
+7 . X O O O X X O
+8 . O O O O O O O
+
+[X] Computer chooses move (6, 2) => Score: -26
+flipping disk at 6,6
+flipping disk at 6,5
+flipping disk at 6,4
+flipping disk at 6,3
+X flipped 4 disks.
+  1 2 3 4 5 6 7 8
+1 O . . . . . . .
+2 O X X . . . . .
+3 O . X X . . . .
+4 O . X O X . O O
+5 . O . X X X O O
+6 X X X X X X X O
+7 . X O O O X X O
+8 . O O O O O O O
+
+[O] Computer chooses move (3, 2) => Score: 19
+flipping disk at 7,6
+flipping disk at 6,5
+flipping disk at 5,4
+flipping disk at 4,3
+O flipped 4 disks.
+  1 2 3 4 5 6 7 8
+1 O . . . . . . .
+2 O X X . . . . .
+3 O O X X . . . .
+4 O . O O X . O O
+5 . O . O X X O O
+6 X X X X O X X O
+7 . X O O O O X O
+8 . O O O O O O O
+
+[X] Computer chooses move (5, 3) => Score: -28
+flipping disk at 5,4
+flipping disk at 4,3
+X flipped 2 disks.
+  1 2 3 4 5 6 7 8
+1 O . . . . . . .
+2 O X X . . . . .
+3 O O X X . . . .
+4 O . X O X . O O
+5 . O X X X X O O
+6 X X X X O X X O
+7 . X O O O O X O
+8 . O O O O O O O
+
+[O] Computer chooses move (4, 6) => Score: 21
+flipping disk at 4,5
+flipping disk at 6,6
+flipping disk at 5,6
+flipping disk at 6,4
+flipping disk at 5,5
+O flipped 5 disks.
+  1 2 3 4 5 6 7 8
+1 O . . . . . . .
+2 O X X . . . . .
+3 O O X X . . . .
+4 O . X O O O O O
+5 . O X X O O O O
+6 X X X O O O X O
+7 . X O O O O X O
+8 . O O O O O O O
+
+[X] Computer chooses move (3, 6) => Score: -30
+flipping disk at 4,5
+X flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 O . . . . . . .
+2 O X X . . . . .
+3 O O X X . X . .
+4 O . X O X O O O
+5 . O X X O O O O
+6 X X X O O O X O
+7 . X O O O O X O
+8 . O O O O O O O
+
+[O] Computer chooses move (5, 1) => Score: 25
+flipping disk at 6,2
+O flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 O . . . . . . .
+2 O X X . . . . .
+3 O O X X . X . .
+4 O . X O X O O O
+5 O O X X O O O O
+6 X O X O O O X O
+7 . X O O O O X O
+8 . O O O O O O O
+
+[X] Computer chooses move (4, 2) => Score: -34
+flipping disk at 3,2
+flipping disk at 6,2
+flipping disk at 5,2
+X flipped 3 disks.
+  1 2 3 4 5 6 7 8
+1 O . . . . . . .
+2 O X X . . . . .
+3 O X X X . X . .
+4 O X X O X O O O
+5 O X X X O O O O
+6 X X X O O O X O
+7 . X O O O O X O
+8 . O O O O O O O
+
+[O] Computer chooses move (7, 1) => Score: 29
+flipping disk at 7,2
+flipping disk at 6,1
+flipping disk at 5,3
+flipping disk at 6,2
+O flipped 4 disks.
+  1 2 3 4 5 6 7 8
+1 O . . . . . . .
+2 O X X . . . . .
+3 O X X X . X . .
+4 O X X O X O O O
+5 O X O X O O O O
+6 O O X O O O X O
+7 O O O O O O X O
+8 . O O O O O O O
+
+[X] Computer chooses move (8, 1) => Score: -36
+flipping disk at 7,2
+X flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 O . . . . . . .
+2 O X X . . . . .
+3 O X X X . X . .
+4 O X X O X O O O
+5 O X O X O O O O
+6 O O X O O O X O
+7 O X O O O O X O
+8 X O O O O O O O
+
+[O] Computer chooses move (2, 6) => Score: 29
+flipping disk at 3,6
+O flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 O . . . . . . .
+2 O X X . . O . .
+3 O X X X . O . .
+4 O X X O X O O O
+5 O X O X O O O O
+6 O O X O O O X O
+7 O X O O O O X O
+8 X O O O O O O O
+
+[X] Computer chooses move (3, 7) => Score: -38
+flipping disk at 5,7
+flipping disk at 4,7
+X flipped 2 disks.
+  1 2 3 4 5 6 7 8
+1 O . . . . . . .
+2 O X X . . O . .
+3 O X X X . O X .
+4 O X X O X O X O
+5 O X O X O O X O
+6 O O X O O O X O
+7 O X O O O O X O
+8 X O O O O O O O
+
+[O] Computer chooses move (2, 7) => Score: 31
+flipping disk at 7,7
+flipping disk at 6,7
+flipping disk at 5,7
+flipping disk at 4,7
+flipping disk at 3,7
+O flipped 5 disks.
+  1 2 3 4 5 6 7 8
+1 O . . . . . . .
+2 O X X . . O O .
+3 O X X X . O O .
+4 O X X O X O O O
+5 O X O X O O O O
+6 O O X O O O O O
+7 O X O O O O O O
+8 X O O O O O O O
+
+[X] Computer chooses move (1, 8) => Score: -42
+flipping disk at 3,6
+flipping disk at 2,7
+X flipped 2 disks.
+  1 2 3 4 5 6 7 8
+1 O . . . . . . X
+2 O X X . . O X .
+3 O X X X . X O .
+4 O X X O X O O O
+5 O X O X O O O O
+6 O O X O O O O O
+7 O X O O O O O O
+8 X O O O O O O O
+
+[O] Computer chooses move (2, 5) => Score: 35
+flipping disk at 3,6
+flipping disk at 5,2
+flipping disk at 4,3
+flipping disk at 3,4
+O flipped 4 disks.
+  1 2 3 4 5 6 7 8
+1 O . . . . . . X
+2 O X X . O O X .
+3 O X X O . O O .
+4 O X O O X O O O
+5 O O O X O O O O
+6 O O X O O O O O
+7 O X O O O O O O
+8 X O O O O O O O
+
+[X] Computer chooses move (3, 5) => Score: -40
+flipping disk at 3,4
+X flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 O . . . . . . X
+2 O X X . O O X .
+3 O X X X X O O .
+4 O X O O X O O O
+5 O O O X O O O O
+6 O O X O O O O O
+7 O X O O O O O O
+8 X O O O O O O O
+
+[O] Computer chooses move (1, 2) => Score: 35
+flipping disk at 4,2
+flipping disk at 3,2
+flipping disk at 2,2
+flipping disk at 4,5
+flipping disk at 3,4
+flipping disk at 2,3
+O flipped 6 disks.
+  1 2 3 4 5 6 7 8
+1 O O . . . . . X
+2 O O O . O O X .
+3 O O X O X O O .
+4 O O O O O O O O
+5 O O O X O O O O
+6 O O X O O O O O
+7 O X O O O O O O
+8 X O O O O O O O
+
+[X] Computer chooses move (1, 5) => Score: -40
+flipping disk at 2,5
+X flipped 1 disks.
+  1 2 3 4 5 6 7 8
+1 O O . . X . . X
+2 O O O . X O X .
+3 O O X O X O O .
+4 O O O O O O O O
+5 O O O X O O O O
+6 O O X O O O O O
+7 O X O O O O O O
+8 X O O O O O O O
+
+[O] Computer chooses move (2, 4) => Score: 33
+flipping disk at 2,5
+flipping disk at 3,5
+flipping disk at 3,3
+O flipped 3 disks.
+  1 2 3 4 5 6 7 8
+1 O O . . X . . X
+2 O O O O O O X .
+3 O O O O O O O .
+4 O O O O O O O O
+5 O O O X O O O O
+6 O O X O O O O O
+7 O X O O O O O O
+8 X O O O O O O O
+
+[X] Computer chooses move (1, 3) => Score: -40
+flipping disk at 5,3
+flipping disk at 4,3
+flipping disk at 3,3
+flipping disk at 2,3
+X flipped 4 disks.
+  1 2 3 4 5 6 7 8
+1 O O X . X . . X
+2 O O X O O O X .
+3 O O X O O O O .
+4 O O X O O O O O
+5 O O X X O O O O
+6 O O X O O O O O
+7 O X O O O O O O
+8 X O O O O O O O
+
+[O] Computer chooses move (1, 4) => Score: 40
+flipping disk at 1,3
+flipping disk at 2,3
+O flipped 2 disks.
+  1 2 3 4 5 6 7 8
+1 O O O O X . . X
+2 O O O O O O X .
+3 O O X O O O O .
+4 O O X O O O O O
+5 O O X X O O O O
+6 O O X O O O O O
+7 O X O O O O O O
+8 X O O O O O O O
+
+[X] Computer chooses move (1, 7) => Score: -40
+flipping disk at 4,4
+flipping disk at 3,5
+flipping disk at 2,6
+X flipped 3 disks.
+  1 2 3 4 5 6 7 8
+1 O O O O X . X X
+2 O O O O O X X .
+3 O O X O X O O .
+4 O O X X O O O O
+5 O O X X O O O O
+6 O O X O O O O O
+7 O X O O O O O O
+8 X O O O O O O O
+
+[O] Computer chooses move (1, 6) => Score: 40
+flipping disk at 1,5
+flipping disk at 2,6
+O flipped 2 disks.
+  1 2 3 4 5 6 7 8
+1 O O O O O O X X
+2 O O O O O O X .
+3 O O X O X O O .
+4 O O X X O O O O
+5 O O X X O O O O
+6 O O X O O O O O
+7 O X O O O O O O
+8 X O O O O O O O
+
+[X] Computer chooses move (3, 8) => Score: -40
+flipping disk at 3,6
+flipping disk at 3,7
+X flipped 2 disks.
+  1 2 3 4 5 6 7 8
+1 O O O O O O X X
+2 O O O O O O X .
+3 O O X O X X X X
+4 O O X X O O O O
+5 O O X X O O O O
+6 O O X O O O O O
+7 O X O O O O O O
+8 X O O O O O O O
+
+[O] Computer chooses move (2, 8) => Score: 40
+flipping disk at 2,7
+flipping disk at 3,8
+flipping disk at 3,7
+O flipped 3 disks.
+  1 2 3 4 5 6 7 8
+1 O O O O O O X X
+2 O O O O O O O O
+3 O O X O X X O O
+4 O O X X O O O O
+5 O O X X O O O O
+6 O O X O O O O O
+7 O X O O O O O O
+8 X O O O O O O O
+Game over.
+X has 12 disks. O has 52 disks. O wins.
+
+Whole Program Statistics
+1) Parallelism Profile
+   Work :					 38,051,192,257 instructions
+   Span :					 1,253,788,118 instructions
+   Burdened span :				 1,262,951,577 instructions
+   Parallelism :				 30.35
+   Burdened parallelism :			 30.13
+   Number of spawns/syncs:			 2,799
+   Average instructions / strand :		 4,530,982
+   Strands along span :				 853
+   Average instructions / strand on span :	 1,469,857
+   Total number of atomic instructions : 	 2,979
+   Frame count :				 5,947
+
+2) Speedup Estimate
+     2 processors:	 1.89 - 2.00
+     4 processors:	 3.42 - 4.00
+     8 processors:	 5.73 - 8.00
+    16 processors:	 8.67 - 16.00
+    32 processors:	 11.64 - 30.35
+    64 processors:	 14.05 - 30.35
+   128 processors:	 15.67 - 30.35
+   256 processors:	 16.64 - 30.35
+
+Cilk Parallel Region(s) Statistics - Elapsed time: 0.033 seconds
+1) Parallelism Profile
+   Work :					 38,041,331,206 instructions
+   Span :					 1,243,927,067 instructions
+   Burdened span :				 1,253,090,526 instructions
+   Parallelism :				 30.58
+   Burdened parallelism :			 30.36
+   Number of spawns/syncs:			 2,799
+   Average instructions / strand :		 4,529,808
+   Strands along span :				 426
+   Average instructions / strand on span :	 2,920,016
+   Total number of atomic instructions : 	 2,979
+   Frame count :				 5,947
+   Entries to parallel region :			 60
+
+2) Speedup Estimate
+     2 processors:	 1.89 - 2.00
+     4 processors:	 3.42 - 4.00
+     8 processors:	 5.75 - 8.00
+    16 processors:	 8.70 - 16.00
+    32 processors:	 11.70 - 30.58
+    64 processors:	 14.13 - 30.58
+   128 processors:	 15.78 - 30.58
+   256 processors:	 16.75 - 30.58

@@ -1,0 +1,82 @@
+===== Compiling Both Serial and Parallel Versions =====
+icpc: command line remark #10010: option '-cilk-serialize' is deprecated and will be removed in a future release. See '-help deprecated'
+icpc: command line warning #10006: ignoring unknown option '-fcilkplus'
+othello.cpp(379): warning #3947: "_Cilk_for" has been deprecated, and will be removed in a future release.  Please refer to release notes for details and recommended alternatives
+          cilk_for (int i = 0; i < idx; i++) {
+          ^
+
+Compilation complete.
+
+===== Running Baseline Sequential (Serialized) Version =====
+Baseline (serialized) run output will be saved to serial_timing.txt
+Baseline run complete. Check serial_timing.txt for details.
+
+Baseline timing recorded:
+Serial, 3m9.639s, 3m9.613s, 0m0.006s
+
+===== Running with 1 thread(s) =====
+Threads: 1, Real Time: 3m8.051s, User Time: 3m8.020s, Sys Time: 0m0.012s
+===== Running with 2 thread(s) =====
+Threads: 2, Real Time: 1m41.159s, User Time: 3m22.096s, Sys Time: 0m0.153s
+===== Running with 3 thread(s) =====
+Threads: 3, Real Time: 1m5.897s, User Time: 3m17.344s, Sys Time: 0m0.248s
+===== Running with 4 thread(s) =====
+Threads: 4, Real Time: 0m52.723s, User Time: 3m30.382s, Sys Time: 0m0.400s
+===== Running with 5 thread(s) =====
+Threads: 5, Real Time: 0m42.339s, User Time: 3m30.927s, Sys Time: 0m0.596s
+===== Running with 6 thread(s) =====
+Threads: 6, Real Time: 0m35.764s, User Time: 3m33.646s, Sys Time: 0m0.755s
+===== Running with 7 thread(s) =====
+Threads: 7, Real Time: 0m30.688s, User Time: 3m33.714s, Sys Time: 0m0.827s
+===== Running with 8 thread(s) =====
+Threads: 8, Real Time: 0m26.700s, User Time: 3m32.335s, Sys Time: 0m1.021s
+===== Running with 9 thread(s) =====
+Threads: 9, Real Time: 0m23.474s, User Time: 3m29.668s, Sys Time: 0m1.327s
+===== Running with 10 thread(s) =====
+Threads: 10, Real Time: 0m21.096s, User Time: 3m29.218s, Sys Time: 0m1.371s
+===== Running with 11 thread(s) =====
+Threads: 11, Real Time: 0m19.240s, User Time: 3m29.612s, Sys Time: 0m1.651s
+===== Running with 12 thread(s) =====
+Threads: 12, Real Time: 0m17.755s, User Time: 3m30.826s, Sys Time: 0m1.860s
+===== Running with 13 thread(s) =====
+Threads: 13, Real Time: 0m16.269s, User Time: 3m29.157s, Sys Time: 0m1.912s
+===== Running with 14 thread(s) =====
+Threads: 14, Real Time: 0m15.653s, User Time: 3m36.171s, Sys Time: 0m2.293s
+===== Running with 15 thread(s) =====
+Threads: 15, Real Time: 0m14.328s, User Time: 3m31.950s, Sys Time: 0m2.469s
+===== Running with 16 thread(s) =====
+Threads: 16, Real Time: 0m13.511s, User Time: 3m33.026s, Sys Time: 0m2.568s
+===== Running with 17 thread(s) =====
+Threads: 17, Real Time: 0m13.703s, User Time: 3m48.775s, Sys Time: 0m3.539s
+===== Running with 18 thread(s) =====
+Threads: 18, Real Time: 0m13.507s, User Time: 3m58.676s, Sys Time: 0m3.743s
+===== Running with 19 thread(s) =====
+Threads: 19, Real Time: 0m13.435s, User Time: 4m10.182s, Sys Time: 0m4.236s
+===== Running with 20 thread(s) =====
+Threads: 20, Real Time: 0m13.158s, User Time: 4m17.885s, Sys Time: 0m4.387s
+===== Running with 21 thread(s) =====
+Threads: 21, Real Time: 0m12.877s, User Time: 4m24.737s, Sys Time: 0m4.829s
+===== Running with 22 thread(s) =====
+Threads: 22, Real Time: 0m12.766s, User Time: 4m34.857s, Sys Time: 0m5.073s
+===== Running with 23 thread(s) =====
+Threads: 23, Real Time: 0m12.603s, User Time: 4m43.326s, Sys Time: 0m5.526s
+===== Running with 24 thread(s) =====
+Threads: 24, Real Time: 0m12.346s, User Time: 4m49.466s, Sys Time: 0m5.744s
+===== Running with 25 thread(s) =====
+Threads: 25, Real Time: 0m12.202s, User Time: 4m57.886s, Sys Time: 0m6.196s
+===== Running with 26 thread(s) =====
+Threads: 26, Real Time: 0m11.985s, User Time: 5m4.015s, Sys Time: 0m6.503s
+===== Running with 27 thread(s) =====
+Threads: 27, Real Time: 0m11.844s, User Time: 5m11.155s, Sys Time: 0m7.394s
+===== Running with 28 thread(s) =====
+Threads: 28, Real Time: 0m11.574s, User Time: 5m15.457s, Sys Time: 0m7.318s
+===== Running with 29 thread(s) =====
+Threads: 29, Real Time: 0m11.465s, User Time: 5m23.018s, Sys Time: 0m7.937s
+===== Running with 30 thread(s) =====
+Threads: 30, Real Time: 0m11.078s, User Time: 5m22.487s, Sys Time: 0m7.597s
+===== Running with 31 thread(s) =====
+Threads: 31, Real Time: 0m10.885s, User Time: 5m26.687s, Sys Time: 0m8.477s
+===== Running with 32 thread(s) =====
+Threads: 32, Real Time: 0m10.803s, User Time: 5m30.763s, Sys Time: 0m8.954s
+
+All runs complete. Execution times saved to execution_times.csv

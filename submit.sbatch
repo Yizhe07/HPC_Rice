@@ -7,8 +7,8 @@
 #SBATCH --mem-per-cpu=512
 #SBATCH --threads-per-core=1
 #SBATCH --time=00:30:00 
-#SBATCH --partition=interactive
-#SBATCH --reservation=classroom
+#SBATCH --partition=commons
+#SBATCH --reservation=comp422
 
 for ((i = 1; i <= 32; i++)); do 
   CILK_NWORKERS=$i time ./othello < default_input 

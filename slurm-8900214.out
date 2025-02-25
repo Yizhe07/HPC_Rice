@@ -1,0 +1,26 @@
+===== Step 1: Running cilkscreen for Data Race Check =====
+cilkscreen output saved to cilkscreen.out
+
+==== Running cilkview Profiling for Lookahead Depths 1-7 ====
+Running cilkview for lookahead depth 1...
+cilkview output for depth 1 saved to cilkview_depth_1.out
+
+Running cilkview for lookahead depth 2...
+cilkview output for depth 2 saved to cilkview_depth_2.out
+
+Running cilkview for lookahead depth 3...
+cilkview output for depth 3 saved to cilkview_depth_3.out
+
+Running cilkview for lookahead depth 4...
+cilkview output for depth 4 saved to cilkview_depth_4.out
+
+Running cilkview for lookahead depth 5...
+cilkview output for depth 5 saved to cilkview_depth_5.out
+
+Running cilkview for lookahead depth 6...
+cilkview output for depth 6 saved to cilkview_depth_6.out
+
+Running cilkview for lookahead depth 7...
+cilkview output for depth 7 saved to cilkview_depth_7.out
+
+==== All cilkscreen and cilkview experiments completed. ====

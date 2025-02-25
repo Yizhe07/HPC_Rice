@@ -1,0 +1,73 @@
+===== Running Baseline Sequential (Serialized) Version =====
+Baseline (serialized) run output will be saved to serial_timing.txt
+
+real	3m14.627s
+user	3m14.585s
+sys	0m0.012s
+Baseline run complete. Please check serial_timing.txt for timing details.
+
+===== Running with 1 thread(s) =====
+Threads: 1, Real Time: 3m3.734s, User Time: 3m3.700s, Sys Time: 0m0.007s
+===== Running with 2 thread(s) =====
+Threads: 2, Real Time: 1m35.899s, User Time: 3m11.606s, Sys Time: 0m0.114s
+===== Running with 3 thread(s) =====
+Threads: 3, Real Time: 1m7.241s, User Time: 3m21.389s, Sys Time: 0m0.218s
+===== Running with 4 thread(s) =====
+Threads: 4, Real Time: 0m51.894s, User Time: 3m27.038s, Sys Time: 0m0.412s
+===== Running with 5 thread(s) =====
+Threads: 5, Real Time: 0m40.509s, User Time: 3m21.832s, Sys Time: 0m0.529s
+===== Running with 6 thread(s) =====
+Threads: 6, Real Time: 0m33.841s, User Time: 3m22.223s, Sys Time: 0m0.635s
+===== Running with 7 thread(s) =====
+Threads: 7, Real Time: 0m29.626s, User Time: 3m26.210s, Sys Time: 0m0.909s
+===== Running with 8 thread(s) =====
+Threads: 8, Real Time: 0m26.031s, User Time: 3m26.934s, Sys Time: 0m1.057s
+===== Running with 9 thread(s) =====
+Threads: 9, Real Time: 0m23.412s, User Time: 3m29.157s, Sys Time: 0m1.256s
+===== Running with 10 thread(s) =====
+Threads: 10, Real Time: 0m21.071s, User Time: 3m28.922s, Sys Time: 0m1.431s
+===== Running with 11 thread(s) =====
+Threads: 11, Real Time: 0m19.102s, User Time: 3m28.208s, Sys Time: 0m1.556s
+===== Running with 12 thread(s) =====
+Threads: 12, Real Time: 0m17.531s, User Time: 3m28.249s, Sys Time: 0m1.700s
+===== Running with 13 thread(s) =====
+Threads: 13, Real Time: 0m16.215s, User Time: 3m28.445s, Sys Time: 0m1.889s
+===== Running with 14 thread(s) =====
+Threads: 14, Real Time: 0m15.191s, User Time: 3m29.938s, Sys Time: 0m2.227s
+===== Running with 15 thread(s) =====
+Threads: 15, Real Time: 0m14.364s, User Time: 3m32.292s, Sys Time: 0m2.595s
+===== Running with 16 thread(s) =====
+Threads: 16, Real Time: 0m14.275s, User Time: 3m44.575s, Sys Time: 0m3.010s
+===== Running with 17 thread(s) =====
+Threads: 17, Real Time: 0m13.813s, User Time: 3m51.004s, Sys Time: 0m3.226s
+===== Running with 18 thread(s) =====
+Threads: 18, Real Time: 0m13.570s, User Time: 3m59.536s, Sys Time: 0m4.067s
+===== Running with 19 thread(s) =====
+Threads: 19, Real Time: 0m13.281s, User Time: 4m7.104s, Sys Time: 0m4.412s
+===== Running with 20 thread(s) =====
+Threads: 20, Real Time: 0m13.100s, User Time: 4m16.624s, Sys Time: 0m4.568s
+===== Running with 21 thread(s) =====
+Threads: 21, Real Time: 0m12.892s, User Time: 4m25.051s, Sys Time: 0m4.841s
+===== Running with 22 thread(s) =====
+Threads: 22, Real Time: 0m12.670s, User Time: 4m32.501s, Sys Time: 0m5.375s
+===== Running with 23 thread(s) =====
+Threads: 23, Real Time: 0m12.493s, User Time: 4m40.721s, Sys Time: 0m5.648s
+===== Running with 24 thread(s) =====
+Threads: 24, Real Time: 0m12.326s, User Time: 4m48.504s, Sys Time: 0m6.197s
+===== Running with 25 thread(s) =====
+Threads: 25, Real Time: 0m12.184s, User Time: 4m57.272s, Sys Time: 0m6.208s
+===== Running with 26 thread(s) =====
+Threads: 26, Real Time: 0m11.999s, User Time: 5m3.111s, Sys Time: 0m7.797s
+===== Running with 27 thread(s) =====
+Threads: 27, Real Time: 0m11.713s, User Time: 5m8.346s, Sys Time: 0m6.823s
+===== Running with 28 thread(s) =====
+Threads: 28, Real Time: 0m11.625s, User Time: 5m16.695s, Sys Time: 0m7.659s
+===== Running with 29 thread(s) =====
+Threads: 29, Real Time: 0m11.387s, User Time: 5m20.955s, Sys Time: 0m7.798s
+===== Running with 30 thread(s) =====
+Threads: 30, Real Time: 0m11.089s, User Time: 5m22.744s, Sys Time: 0m7.980s
+===== Running with 31 thread(s) =====
+Threads: 31, Real Time: 0m10.883s, User Time: 5m26.712s, Sys Time: 0m8.383s
+===== Running with 32 thread(s) =====
+Threads: 32, Real Time: 0m10.767s, User Time: 5m31.177s, Sys Time: 0m8.390s
+All runs complete. Execution times saved to execution_times.csv
