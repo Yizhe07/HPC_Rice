@@ -3,89 +3,79 @@
 #include <cilk/cilk.h>
 #include <cilk/reducer_max.h>
 
-//
-// Macros & Constants
-//
-
 // Define a cutoff depth for switching to serial execution
 #define CUTOFF_DEPTH 4
 
 #define BIT 0x1
 
-// Colors
+
 #define X_BLACK 0
 #define O_WHITE 1
 #define OTHERCOLOR(c) (1 - (c))
 
-// Convert (row,col) to bit index. Rows/columns are 1..8 from user perspective.
+/* 
+	represent game board squares as a 64-bit unsigned integer.
+	these macros index from a row,column position on the board
+	to a position and bit in a game board bitvector
+*/
+
+
 #define BOARD_BIT_INDEX(row,col) ((8 - (row)) * 8 + (8 - (col)))
 #define BOARD_BIT(row,col) (0x1ULL << BOARD_BIT_INDEX(row,col))
-
-// Convert a Move to the corresponding single bit in the 64-bit board
 #define MOVE_TO_BOARD_BIT(m) BOARD_BIT(m.row, m.col)
 
-// Predefined row/col masks for 8
+/* all of the bits in the row 8 */
 #define ROW8 ( BOARD_BIT(8,1) | BOARD_BIT(8,2) | BOARD_BIT(8,3) | BOARD_BIT(8,4) | \
                BOARD_BIT(8,5) | BOARD_BIT(8,6) | BOARD_BIT(8,7) | BOARD_BIT(8,8) )
 
+/* all of the bits in column 8 */
 #define COL8 ( BOARD_BIT(1,8) | BOARD_BIT(2,8) | BOARD_BIT(3,8) | BOARD_BIT(4,8) | \
                BOARD_BIT(5,8) | BOARD_BIT(6,8) | BOARD_BIT(7,8) | BOARD_BIT(8,8) )
 
-// For convenience when shifting left or right
+/* all of the bits in column 1 */
 #define COL1 (COL8 << 7)
 
-// Check if a Move is outside the board
 #define IS_MOVE_OFF_BOARD(m) ( (m.row < 1) || (m.row > 8) || (m.col < 1) || (m.col > 8) )
-// Offsets can be diagonals if row != 0 && col != 0
 #define IS_DIAGONAL_MOVE(m) ( (m.row != 0) && (m.col != 0) )
 #define MOVE_OFFSET_TO_BIT_OFFSET(m) ( (m.row * 8) + (m.col) )
 
-//
-// Type Definitions
-//
+
 typedef unsigned long long ull;
 
-typedef struct {
-    ull disks[2];  // disks[0] = X_BLACK, disks[1] = O_WHITE
-} Board;
+/* 
+	game board represented as a pair of bit vectors: 
+	- one for x_black disks on the board
+	- one for o_white disks on the board
+*/
 
-typedef struct {
-    int row;
-    int col;
-} Move;
+typedef struct { ull disks[2]; } Board;
 
-// Global array of direction offsets (8 directions)
+typedef struct { int row; int col; } Move;
+
+
 Move offsets[] = {
-    {0,1},   {0,-1},  // right, left
-    {-1,0},  {1,0},   // up, down
-    {-1,-1}, {-1,1},  // up-left, up-right
-    {1,1},   {1,-1}   // down-right, down-left
+  {0,1}		/* right */,		{0,-1}		/* left */, 
+  {-1,0}	/* up */,		{1,0}		/* down */, 
+  {-1,-1}	/* up-left */,		{-1,1}		/* up-right */, 
+  {1,1}		/* down-right */,	{1,-1}		/* down-left */
 };
-int noffsets = sizeof(offsets)/sizeof(Move);
 
-// Disk color characters:  0='.', 1='X', 2='O', 3='I'(unused)
+int noffsets = sizeof(offsets)/sizeof(Move);
 char diskcolor[] = { '.', 'X', 'O', 'I' };
 
-//
-// Initial Board
-// (4,5) and (5,4) => X (black), (4,4) and (5,5) => O (white)
-//
-Board start = {
-    (BOARD_BIT(4,5) | BOARD_BIT(5,4)), // X_BLACK
-    (BOARD_BIT(4,4) | BOARD_BIT(5,5))  // O_WHITE
+
+Board start = { 
+	BOARD_BIT(4,5) | BOARD_BIT(5,4) /* X_BLACK */, 
+	BOARD_BIT(4,4) | BOARD_BIT(5,5) /* O_WHITE */
 };
 
-//
-// Forward Declarations of Key Functions
-//
+
 void PrintBoard(Board b);
 int HumanTurn(Board *b, int color);
 int CountBitsOnBoard(const Board *b, int color);
 void EndGame(Board b);
 
-// -----------------------------------------------------------------------------
-// Board Printing
-// -----------------------------------------------------------------------------
+
 static void PrintDisk(int x_black, int o_white) {
     printf(" %c", diskcolor[x_black + (o_white << 1)]);
 }
@@ -111,18 +101,24 @@ void PrintBoard(Board b) {
     PrintBoardRows(b.disks[X_BLACK], b.disks[O_WHITE], 8);
 }
 
-// -----------------------------------------------------------------------------
-// Disk Placement & Flipping
-// -----------------------------------------------------------------------------
+/* 
+	place a disk of color at the position specified by m.row and m,col,
+	flipping the opponents disk there (if any) 
+*/
+
 static void PlaceOrFlip(Move m, Board *b, int color) {
     ull bit = MOVE_TO_BOARD_BIT(m);
     b->disks[color] |= bit;
     b->disks[OTHERCOLOR(color)] &= ~bit;
 }
 
-// Recursive helper to flip in one direction
+/* 
+	try to flip disks along a direction specified by a move offset.
+	the return code is 0 if no flips were done.
+	the return value is 1 + the number of flips otherwise.
+*/
+
 static int TryFlips(Move m, Move offset, Board *b, int color, int verbose, int domove) {
-    // Check the next square in the given direction
     Move next;
     next.row = m.row + offset.row;
     next.col = m.col + offset.col;
@@ -130,10 +126,8 @@ static int TryFlips(Move m, Move offset, Board *b, int color, int verbose, int d
     if (!IS_MOVE_OFF_BOARD(next)) {
         ull nextbit = MOVE_TO_BOARD_BIT(next);
         if (nextbit & b->disks[OTHERCOLOR(color)]) {
-            // The next square has an opponent disk => keep going
             int nflips = TryFlips(next, offset, b, color, verbose, domove);
             if (nflips) {
-                // We can flip this one
                 if (verbose) {
                     printf("flipping disk at %d,%d\n", next.row, next.col);
                 }
@@ -141,7 +135,6 @@ static int TryFlips(Move m, Move offset, Board *b, int color, int verbose, int d
                 return nflips + 1;
             }
         } else if (nextbit & b->disks[color]) {
-            // Found one of my own disks => success anchor
             return 1;
         }
     }
@@ -153,7 +146,7 @@ int FlipDisks(Move m, Board *b, int color, int verbose, int domove) {
     int nflips = 0;
     for (i = 0; i < noffsets; i++) {
         int flipresult = TryFlips(m, offsets[i], b, color, verbose, domove);
-        // If flipresult > 0 => it includes +1 for the “anchor”
+        // If flipresult > 0 => it includes +1
         if (flipresult > 0) {
             nflips += (flipresult - 1);
         }
@@ -161,9 +154,7 @@ int FlipDisks(Move m, Board *b, int color, int verbose, int domove) {
     return nflips;
 }
 
-// -----------------------------------------------------------------------------
-// Human Move
-// -----------------------------------------------------------------------------
+
 void ReadMove(int color, Board *b) {
     Move m;
     ull movebit;
@@ -171,7 +162,7 @@ void ReadMove(int color, Board *b) {
         printf("Enter %c's move as 'row,col': ", diskcolor[color+1]);
         scanf("%d,%d", &m.row, &m.col);
 
-        // If move is not on the board => illegal
+        /* if move is not on the board, move again */
         if (IS_MOVE_OFF_BOARD(m)) {
             printf("Illegal move: row and column must both be between 1 and 8\n");
             PrintBoard(*b);
@@ -179,14 +170,14 @@ void ReadMove(int color, Board *b) {
         }
         movebit = MOVE_TO_BOARD_BIT(m);
 
-        // If position is occupied => illegal
+        /* if board position occupied, move again */
         if (movebit & (b->disks[X_BLACK] | b->disks[O_WHITE])) {
             printf("Illegal move: board position already occupied.\n");
             PrintBoard(*b);
             continue;
         }
 
-        // Check if we flip any disks
+        /* if no disks have been flipped */ 
         {
             int nflips = FlipDisks(m, b, color, 1, 1);
             if (nflips == 0) {
@@ -198,7 +189,7 @@ void ReadMove(int color, Board *b) {
             printf("You flipped %d disks\n", nflips);
             PrintBoard(*b);
         }
-        break; // success
+        break;
     }
 }
 
@@ -218,12 +209,14 @@ int HumanTurn(Board *b, int color) {
     return 0; // pass
 }
 
-// -----------------------------------------------------------------------------
-// Enumerating Legal Moves
-// -----------------------------------------------------------------------------
+/*
+	return the set of board positions adjacent to an opponent's
+	disk that are empty. these represent a candidate set of 
+	positions for a move by color.
+*/
+
 static Board NeighborMoves(Board b, int color) {
     Board neighbors = {0ULL, 0ULL};
-    // For each direction offset
     for (int i = 0; i < noffsets; i++) {
         ull colmask = (offsets[i].col != 0)
                         ? ((offsets[i].col > 0) ? COL1 : COL8)
@@ -236,7 +229,6 @@ static Board NeighborMoves(Board b, int color) {
             neighbors.disks[color] |= (b.disks[OTHERCOLOR(color)] << -off) & ~colmask;
         }
     }
-    // Exclude squares already occupied
     neighbors.disks[color] &= ~(b.disks[X_BLACK] | b.disks[O_WHITE]);
     return neighbors;
 }
@@ -247,30 +239,27 @@ int EnumerateLegalMoves(Board b, int color, Board *legal_moves) {
     ull my_neighbor_moves = neighbors.disks[color];
     int num_moves = 0;
 
-    // Use bit-scan to find all set bits efficiently
     while (my_neighbor_moves) {
-        ull next_move = my_neighbor_moves & -my_neighbor_moves; // Extract LSB
+        ull next_move = my_neighbor_moves & -my_neighbor_moves;
         int bitpos = __builtin_ctzll(next_move);
         int row = 8 - (bitpos / 8);
         int col = 8 - (bitpos % 8);
         Move m = { row, col };
-        if (FlipDisks(m, &b, color, /*verbose=*/0, /*domove=*/0) > 0) {
+        if (FlipDisks(m, &b, color, 0, 0) > 0) {
             legal_moves->disks[color] |= next_move;
             num_moves++;
         }
-        my_neighbor_moves ^= next_move; // Clear the processed bit
+        my_neighbor_moves ^= next_move;
     }
     return num_moves;
 }
 
-// -----------------------------------------------------------------------------
-// Counting and Ending the Game
-// -----------------------------------------------------------------------------
+
 int CountBitsOnBoard(const Board *b, int color) {
     ull bits = b->disks[color];
     int ndisks = 0;
     while (bits) {
-        bits &= (bits - 1); // pop least significant set bit
+        bits &= (bits - 1); // clear the least significant bit set
         ndisks++;
     }
     return ndisks;
@@ -288,11 +277,8 @@ void EndGame(Board b) {
     }
 }
 
-// -----------------------------------------------------------------------------
-// Utilities for Search
-// -----------------------------------------------------------------------------
 
-// Check if neither side can move => game is effectively over
+// Check if neither side can move
 bool GameIsOver(const Board &b) {
     Board dummy;
     int xMoves = EnumerateLegalMoves(b, X_BLACK, &dummy);
@@ -300,46 +286,40 @@ bool GameIsOver(const Board &b) {
     return (xMoves == 0 && oMoves == 0);
 }
 
-// Evaluate the board from the perspective of 'color'
-// (0 => X, 1 => O). The simplest approach: (#my disks - #opponent disks).
+// Evaluate the board
 int EvaluateBoard(const Board &b, int color) {
     int myCount  = CountBitsOnBoard(&b, color);
     int oppCount = CountBitsOnBoard(&b, OTHERCOLOR(color));
-    // If color==X_BLACK => score = myCount - oppCount.
-    // If color==O_WHITE => score = myCount - oppCount, etc.
-    // This function is from the perspective of color, so:
+    // If color==X_BLACK => score = myCount - oppCount
+    // If color==O_WHITE => score = myCount - oppCount
     return (myCount - oppCount);
 }
 
-// Copy 'oldBoard', place a disk of 'color' at move 'm' (flips included)
+// Copy oldBoard
 static int MakeMove(const Board *oldBoard, int color, Move m, Board *newBoard) {
-    *newBoard = *oldBoard;  // copy
-    int flipped = FlipDisks(m, newBoard, color, /*verbose=*/0, /*domove=*/1);
+    *newBoard = *oldBoard;  
+    int flipped = FlipDisks(m, newBoard, color, 0, 1);
     PlaceOrFlip(m, newBoard, color);
     return flipped;
 }
 
-// -----------------------------------------------------------------------------
-// Parallel Negamax
-// -----------------------------------------------------------------------------
 
-// Basic parallel Negamax (without alpha-beta) returns the best score for 'color'.
-// 'depth' is how many moves ahead to explore.
+// Parallel Negamax
+// Basic parallel Negamax return the best score for color
+// depth is how many moves ahead to explore
 
 int Negamax(const Board &b, int color, int depth) {
-    // Base conditions
     if (depth == 0 || GameIsOver(b)) {
         return EvaluateBoard(b, color);
     }
 
-    // Gather all legal moves
     Board legalMoves;
     int numMoves = EnumerateLegalMoves(b, color, &legalMoves);
     if (numMoves == 0) {
         return -Negamax(b, OTHERCOLOR(color), depth - 1);
     }
 
-    // Use serial execution for depths below the cutoff to optimize granularity
+    // Use serial execution for depths below the cutoff
     if (depth <= CUTOFF_DEPTH) {
         int bestValue = -9999999;
         ull bits = legalMoves.disks[color];
@@ -388,10 +368,8 @@ int Negamax(const Board &b, int color, int depth) {
 }
 
 
-// Usually we want to retrieve not only the best score but also the best Move.
-// We'll define a "root" function that enumerates moves, spawns child calls, 
-// and then picks the best index.
 
+// Define a "root" function that enumerates moves, sand then picks the best index.
 int NegamaxRoot(const Board &b, int color, int depth, Move *bestMove) {
     Board legalMoves;
     int numMoves = EnumerateLegalMoves(b, color, &legalMoves);
@@ -434,28 +412,22 @@ int NegamaxRoot(const Board &b, int color, int depth, Move *bestMove) {
     return bestVal;
 }
 
-// -----------------------------------------------------------------------------
 // Computer Turn
-// -----------------------------------------------------------------------------
 int ComputerTurn(Board *b, int color, int depth) {
     // Check if there's a legal move
     Board legal;
     int num_moves = EnumerateLegalMoves(*b, color, &legal);
     if (num_moves == 0) {
-        // pass
         return 0;
     }
 
-    // Otherwise, do a parallel search
     Move bestM;
     int bestScore = NegamaxRoot(*b, color, depth, &bestM);
 
-    // Apply that best move to 'b'
     printf("\n[%c] Computer chooses move (%d, %d) => Score: %d\n",
            (color==X_BLACK ? 'X':'O'), bestM.row, bestM.col, bestScore);
 
-    // Flip disks on the real board
-    int flips = FlipDisks(bestM, b, color, /*verbose=*/1, /*domove=*/1);
+    int flips = FlipDisks(bestM, b, color, 1, 1);
     PlaceOrFlip(bestM, b, color);
 
     printf("%c flipped %d disks.\n", (color==X_BLACK ? 'X':'O'), flips);
@@ -463,14 +435,12 @@ int ComputerTurn(Board *b, int color, int depth) {
     return 1; 
 }
 
-// -----------------------------------------------------------------------------
+
 // Main
-// -----------------------------------------------------------------------------
 int main() {
     Board gameboard = start;
     PrintBoard(gameboard);
 
-    // Prompt whether p1 (X) is human or computer
     char p1type, p2type;
     int p1depth = 0, p2depth = 0;
 
@@ -481,7 +451,6 @@ int main() {
         scanf("%d", &p1depth);
     }
 
-    // Prompt whether p2 (O) is human or computer
     printf("Is Player 2 (O) [h]uman or [c]omputer? ");
     scanf(" %c", &p2type);
     if (p2type == 'c') {
@@ -489,7 +458,6 @@ int main() {
         scanf("%d", &p2depth);
     }
 
-    // Now alternate turns until neither side can move
     int currentColor = X_BLACK; 
     int movePossibleX = 1, movePossibleO = 1;
 
@@ -511,16 +479,14 @@ int main() {
             movePossibleO = moveMade;
         }
 
-        // If neither side can move => game is over
         if (!movePossibleX && !movePossibleO) {
             break;
         }
 
-        // Switch player
+
         currentColor = 1 - currentColor; 
     }
 
-    // Print final results
     EndGame(gameboard);
     return 0;
 }
